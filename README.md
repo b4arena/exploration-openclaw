@@ -60,6 +60,7 @@ openclaw/                        ← you are here
 | [langfuse-audit-trail.md](deployment/langfuse-audit-trail.md) | Langfuse Cloud as audit trail: OTel integration, trace visualization, pricing, data sovereignty |
 | [node-isolation.md](deployment/node-isolation.md) | Node.js isolation on Fedora without containers: Volta, fnm, mise, Nix — comparison table |
 | [sandbox-container-lifecycle.md](deployment/sandbox-container-lifecycle.md) | Sandbox container lifecycle: creation timing, templates, reuse, scoping, auto-pruning |
+| [podman-migration.md](deployment/podman-migration.md) | Docker→Podman migration: compatibility matrix, networking caveats, security comparison, risk assessment |
 
 ### Beads — Protocol & Multi-Agent Coordination
 
