@@ -1,4 +1,4 @@
-# b4forge
+# #B4forge #
 
 Multi-agent software forge — coordinating AI agents to build, test, and ship software.
 
