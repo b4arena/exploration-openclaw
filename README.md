@@ -41,6 +41,7 @@ openclaw/                        ← you are here
 
 | File | Content |
 |---|---|
+| [agent-identity-and-capabilities.md](agents/agent-identity-and-capabilities.md) | Agent identity model (4 layers), org topology (wings + Borg nodes), ROLE.yaml schema, capability expression (skills vs competencies), AGENTS.md vs registry |
 | [subagent-skills.md](agents/subagent-skills.md) | Skill inheritance for Subagents, B4Racing practical example |
 | [subagent-deep-dive.md](agents/subagent-deep-dive.md) | Subagent inheritance: Skills, Bootstrap files, System Prompt, Depth control |
 | [agent-to-agent.md](agents/agent-to-agent.md) | Agent-to-agent communication: subagent spawn vs sessions_send vs channel-based (Matrix) |
