@@ -691,6 +691,17 @@ END:
 
 ---
 
+### Beads vs. GitHub Issues: Separate Worlds
+
+Beads is **internal Slack** — agent-to-agent and agent-human coordination and communication. It does not replace a ticket system.
+
+| System | Purpose | Lifecycle |
+|---|---|---|
+| **Beads** | Internal coordination, task dispatch, agent chat | Ephemeral — beads can be cleaned up after completion |
+| **GitHub Issues** | Official project tracking, external documentation | Permanent — part of the project record |
+
+No automatic sync between the two. Agents reference GitHub Issues in beads manually where needed (e.g., "see GH#42").
+
 ## References
 
 ### Beads Repository

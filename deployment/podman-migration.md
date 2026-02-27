@@ -5,9 +5,9 @@ Research into whether OpenClaw's sandboxing works with Podman containers, and wh
 ## Current State
 
 - **Mimas runs Docker CE** for both the OpenClaw gateway and agent sandbox containers
-- The forge explicitly documents Docker usage (`forge/CLAUDE.md`: "OpenClaw uses Docker, not Podman")
+- The ludus explicitly documents Docker usage (`ludus/CLAUDE.md`: "OpenClaw uses Docker, not Podman")
 - Sandbox containers are managed via `docker create`, `docker start`, `docker exec` commands in `src/agents/sandbox/docker.ts`
-- Custom sandbox images are built with standard Dockerfiles (`forge/containers/Dockerfile.openclaw-sandbox*`)
+- Custom sandbox images are built with standard Dockerfiles (`ludus/containers/Dockerfile.openclaw-sandbox*`)
 
 ## Podman Support in OpenClaw
 
@@ -97,8 +97,8 @@ For sandbox containers needing network (`network: "bridge"` for `setupCommand` o
 |------|---------|--------|
 | `resources/openclaw/openclaw.podman.env` | Podman env template | Ready |
 | `resources/openclaw/scripts/run-openclaw-podman.sh` | Gateway launcher | Ready, production-quality |
-| `forge/containers/Dockerfile.openclaw-sandbox` | Sandbox base image | Compatible (standard Dockerfile) |
-| `forge/containers/Dockerfile.openclaw-sandbox-common` | Dev sandbox image | Compatible (standard Dockerfile) |
+| `ludus/containers/Dockerfile.openclaw-sandbox` | Sandbox base image | Compatible (standard Dockerfile) |
+| `ludus/containers/Dockerfile.openclaw-sandbox-common` | Dev sandbox image | Compatible (standard Dockerfile) |
 | `infra/templates/openclaw-*.j2` | Infrastructure templates | Need audit for Docker references |
 
 ## Risk Assessment

@@ -357,9 +357,9 @@ cd /workspace && bd ready --json   # or any subdirectory
 
 **Decided: Option B (standalone shared Beads repo with `BEADS_DIR` via direnv)**
 
-### Context: The Software Forge Model
+### Context: The Software Smithy Model
 
-The workspace is a **software forge** ("Softwareschmiede") coordinated by OpenClaw. Multiple roles (agents) work across multiple projects:
+The workspace is a **software smithy** ("Softwareschmiede") coordinated by OpenClaw. Multiple roles (agents) work across multiple projects:
 
 | Role | Repo Checkout? | Needs Beads? |
 |---|---|---|
@@ -394,7 +394,7 @@ No automatic sync between the two. Agents reference GitHub Issues in beads manua
 ### Workspace Layout
 
 ```
-/workspace/                     ← Software forge root
+/workspace/                     ← Software smithy root
 ├── beads/                      ← Standalone git repo (the nervous system)
 │   └── .beads/
 │       ├── beads.db

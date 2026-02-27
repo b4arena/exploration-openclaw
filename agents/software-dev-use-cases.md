@@ -242,9 +242,9 @@ The practical recommendation from the community: use OpenClaw for automation wor
 
 ## 6. Real-World Examples and Case Studies
 
-### 6.1 "Everything I've Done with OpenClaw" (madebynathan.com)
+### 6.1 "Everything I've Done with OpenClaw"
 
-A developer ("Reef") documented end-to-end autonomous development:
+A developer documented end-to-end autonomous development:
 
 - **PR-based workflow**: always works through PRs, never pushes to main
 - **Dual CI**: GitHub Actions for public repos, Woodpecker CI for local feedback

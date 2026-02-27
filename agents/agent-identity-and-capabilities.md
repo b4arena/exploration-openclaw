@@ -15,8 +15,8 @@ OpenClaw provides the runtime (gateway, sandbox, session, skill injection). It d
 not prescribe how an organisation structures its agents, groups them, expresses their
 capabilities, or routes work between them across multiple hosts.
 
-b4arena runs agents on two hosts (`mimas`, `rpi5`) with plans to add more. As the
-agent roster grows (13 agents across 5 wings in `b4arena` alone), three gaps emerge:
+The b4arena workspace runs agents on two hosts (`mimas`, `rpi5`) with plans to add more. As the
+agent roster grows, three gaps emerge:
 
 1. **No org layer** — agents are registered per-host with no grouping above "all agents
    on this host". There is no machine-readable concept of a wing, team, or functional
@@ -46,8 +46,8 @@ Defined in `infra/inventory/group_vars/all/wings.yaml`:
 | `product` | Roadmap, user stories, UX | `product-manager` |
 | `engineering` | Architecture, development, infrastructure | `engineering-manager` |
 | `quality` | Test coverage, release gate | `qa-engineer` |
-| `domain` | Domain expertise, documentation | `racing-analyst` |
-| `forge` | Internal tooling, CI, multi-agent coordination | `orchestrator` |
+| `domain` | Domain expertise, documentation | `analyst` |
+| `ludus` | Internal tooling, CI, multi-agent coordination | `orchestrator` |
 
 Cross-wing escalations always flow through `leadership` (CoS). No wing talks to
 another wing directly — work items cross via the CoS routing layer.
@@ -59,7 +59,7 @@ can run on any node. The org topology (wings) is entirely independent of the com
 topology (hosts).
 
 ```
-Org layer (wings):      leadership — product — engineering — quality — domain — forge
+Org layer (wings):      leadership — product — engineering — quality — domain — ludus
                              ↕ all cross through leadership (CoS)
 
 Compute layer (nodes):  mimas ←→ rpi5 ←→ (future nodes)
@@ -80,17 +80,17 @@ Layer 2 — Deployment      (infra/host_vars/<host>/main.yml)
   openclaw_agent_name, host placement, workspace remote, wing, role,
   cross_wing flag, escalates_to. Links org identity to compute node.
 
-Layer 3 — Behavioral      (forge/agents/<name>/SOUL.md + ROLE.yaml)
+Layer 3 — Behavioral      (ludus/agents/<name>/SOUL.md + ROLE.yaml)
   SOUL.md: prose persona, values, communication style — injected at session start.
   ROLE.yaml: structured declaration consumed by tooling (see §3).
 
-Layer 4 — Capability      (forge/skills/<name>/SKILL.md)
+Layer 4 — Capability      (ludus/skills/<name>/SKILL.md)
   Per-skill specs referenced by ROLE.yaml. Self-describing: includes
   infrastructure requirements (bins, env vars) tooling can provision.
 ```
 
 Layers 1–2 live in `infra/` (infrastructure concerns). Layers 3–4 live in the
-agent's own repo (behavioural concerns). They are linked by the agent name slug.
+ludus repo (behavioural concerns). They are linked by the agent name slug.
 
 ---
 
@@ -99,7 +99,7 @@ agent's own repo (behavioural concerns). They are linked by the agent name slug.
 `SOUL.md` is for the agent to read. `ROLE.yaml` is for tooling to read. They are
 independent layers with independent change cycles.
 
-**Schema** (defined in `arena/framework/agents.md`):
+**Schema** (defined in `ludus/framework/agents.md`):
 
 ```yaml
 # Required
@@ -117,13 +117,13 @@ tools: []                   # CLI tools available in sandbox
 site_requirements: []       # Empty = any node; or list specific hostnames
 ```
 
-**Implemented examples** — `forge/agents/`:
+**Implemented examples** — `ludus/agents/`:
 
 | Agent | Wing | Role | cross_wing | Skills |
 |---|---|---|---|---|
-| `main` | forge | orchestrator | true | beads-coordination |
-| `b4-dev` | forge | developer | false | pr-creation, beads-coordination, worktree-workflow |
-| `b4-eng-mgr` | forge | engineering-manager | false | task-triage, beads-coordination |
+| `main` | ludus | orchestrator | true | beads-coordination |
+| `b4-dev` | ludus | developer | false | pr-creation, beads-coordination, worktree-workflow |
+| `b4-eng-mgr` | ludus | engineering-manager | false | task-triage, beads-coordination |
 
 `wings.yaml` is the authoritative source. If a `wing` or `role` value in `ROLE.yaml`
 does not match an entry in `wings.yaml`, it is an error.
@@ -151,7 +151,7 @@ Giving an agent the beads capability illustrates how the chain works:
 ROLE.yaml
   skills: [intercom]
        ↓ resolves to
-forge/skills/intercom/SKILL.md
+ludus/skills/intercom/SKILL.md
   frontmatter:
     requires:
       bins: [bd]
@@ -191,14 +191,14 @@ auto-generated at deploy time from all `ROLE.yaml` files:
 # org/capabilities-registry.yaml  (generated — do not edit by hand)
 agents:
   - name: main
-    wing: forge
+    wing: ludus
     role: orchestrator
     cross_wing: true
     skills: [intercom]
     tools: [bd, telegram]
     host: mimas
   - name: b4-dev
-    wing: forge
+    wing: ludus
     role: developer
     cross_wing: false
     skills: [intercom, pr-creation, worktree-workflow]
@@ -222,6 +222,8 @@ frequently confused with capability documentation. They answer different questio
 | `SOUL.md` | Who am I? (agent session) | Human, maintained |
 | `AGENTS.md` | Who are my peers and when do I call them? (agent session) | Human — **not generated** |
 | capabilities registry | Which agents have skill X on node Y? (tooling) | Generated from ROLE.yaml |
+
+---
 
 The "when to involve" column in an AGENTS.md team roster is routing judgment — it
 cannot be derived from a skills list. A generated table would be factually correct
@@ -258,10 +260,10 @@ the full 4-layer identity:
 openclaw_agent_identities:
   - agent: "b4-dev"
     # Org identity (Layer 2 — new fields)
-    wing: "forge"
+    wing: "ludus"
     role: "developer"
     cross_wing: false
-    escalates_to: "forge:engineering-manager"
+    escalates_to: "ludus:engineering-manager"
     # Cryptographic identity (Layer 1)
     gpg_slug: "b4_dev"
     gpg_fingerprint: "<fpr>"
@@ -282,14 +284,14 @@ entry and the ROLE.yaml file.
 - **Registry generation tooling** — `just gen-registry` is proposed but not
   implemented. What validates skill name → SKILL.md resolution at CI time?
 
-- **Arena agent directories** — `arena/forge/agents.md` defines 13 agents in
+- **Ludus agent directories** — `ludus/framework/agents.md` defines agents in
   prose. They need per-agent directories with `SOUL.md` + `ROLE.yaml` before
   they can be provisioned. Blocked on splitting the monolithic `agents.md`.
 
 - **Cross-site intercom** — beads intercom is currently per-host. Cross-site
   work items (an engineering agent on `rpi5` picking up work from a `mimas`
   bead) require either a shared intercom instance or a federation/bridge layer.
-  Shared intercom with wing-prefixed label namespacing (`forge:dev`, `leadership:cos`)
+  Shared intercom with wing-prefixed label namespacing (`ludus:dev`, `leadership:cos`)
   is the lower-complexity starting point.
 
 - **Skill filter inheritance** — OpenClaw passes the parent agent's skill snapshot

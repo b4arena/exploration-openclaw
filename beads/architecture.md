@@ -27,7 +27,7 @@ Beads provides a git-backed, DAG-based issue tracker with built-in messaging (`b
 
 ### 1.1 What Beads Is
 
-Beads is a distributed, git-backed **graph issue tracker optimized for AI agents** (16.8k stars, v0.52.0, 241 contributors). It replaces flat markdown plans with dependency-aware task graphs for long-horizon multi-agent work.
+Beads is a distributed, git-backed **graph issue tracker optimized for AI agents** (18k+ stars, v0.52+, 250+ contributors). It replaces flat markdown plans with dependency-aware task graphs for long-horizon multi-agent work.
 
 - **Install:** `npm install -g @beads/bd` or `brew install beads`
 - **GitHub:** https://github.com/steveyegge/beads
@@ -467,7 +467,7 @@ An OpenClaw plugin could potentially use the MCP server interface rather than sh
 
 **Decision:** Option B — **Standalone Beads Repo** with `BEADS_DIR` via direnv.
 
-**Rationale:** The workspace is a software forge with roles (PM, Architect, Eng. Manager) that have no code repo checkout. Per-repo `.beads/` with hydration requires cwd inside a repo — doesn't work for these roles. A standalone beads repo provides a single polling point for the Tier 1 watcher and zero scaling cost when projects are added. Beads is internal coordination ("Slack"), not project tracking — it doesn't need to travel with code.
+**Rationale:** The workspace is a software smithy with roles (PM, Architect, Eng. Manager) that have no code repo checkout. Per-repo `.beads/` with hydration requires cwd inside a repo — doesn't work for these roles. A standalone beads repo provides a single polling point for the Tier 1 watcher and zero scaling cost when projects are added. Beads is internal coordination ("Slack"), not project tracking — it doesn't need to travel with code.
 
 See [multi-repo-topology.md](multi-repo-topology.md) §8 for the full decision record.
 
