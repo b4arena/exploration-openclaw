@@ -1,10 +1,10 @@
 # Agent Identity, Org Topology, and Capability Expression
 
-> Design research: how b4forge agents declare who they are, what they can do,
+> Design research: how b4arena agents declare who they are, what they can do,
 > and how that information flows through infrastructure, routing, and peer discovery.
 >
-> Sources: `b4forge/infra/`, `b4forge/arena/framework/`, `b4forge/forge/agents/`,
-> `b4forge/meta/skills/`. Not derived from OpenClaw source — this is org design
+> Sources: `b4arena/infra/`, `b4arena/arena/framework/`, `b4arena/ludus/agents/`,
+> `b4arena/meta/skills/`. Not derived from OpenClaw source — this is org design
 > research layered on top of OpenClaw's agent and skill primitives.
 
 ---
@@ -15,7 +15,7 @@ OpenClaw provides the runtime (gateway, sandbox, session, skill injection). It d
 not prescribe how an organisation structures its agents, groups them, expresses their
 capabilities, or routes work between them across multiple hosts.
 
-b4forge runs agents on two hosts (`mimas`, `rpi5`) with plans to add more. As the
+b4arena runs agents on two hosts (`mimas`, `rpi5`) with plans to add more. As the
 agent roster grows (13 agents across 5 wings in `b4arena` alone), three gaps emerge:
 
 1. **No org layer** — agents are registered per-host with no grouping above "all agents
@@ -265,9 +265,9 @@ openclaw_agent_identities:
     # Cryptographic identity (Layer 1)
     gpg_slug: "b4_dev"
     gpg_fingerprint: "<fpr>"
-    gpg_email: "b4-dev@b4forge.net"
+    gpg_email: "b4-dev@b4arena.net"
     # Deployment (Layer 2 — existing)
-    workspace_remote: "https://github.com/b4forge/b4-dev-workspace.git"
+    workspace_remote: "https://github.com/b4arena/b4-dev-workspace.git"
     workspace_branch: "main"
 ```
 

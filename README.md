@@ -67,7 +67,7 @@ openclaw/                        ← you are here
 
 | File | Content | Status |
 |---|---|---|
-| [architecture.md](beads/architecture.md) | Beads-based multi-agent architecture: Four-Tier token-saving, identity bridging, community ecosystem | Migrated → [`b4forge/docs/architecture.md`](../b4forge/docs/architecture.md) |
+| [architecture.md](beads/architecture.md) | Beads-based multi-agent architecture: Four-Tier token-saving, identity bridging, community ecosystem | Migrated → [`b4arena/docs/architecture.md`](../b4arena/docs/architecture.md) |
 | [sync-patterns.md](beads/sync-patterns.md) | Beads agent synchronization: comment patterns, molecules, bd prime/hooks, bd mail, agent discovery |
 | [multi-repo-topology.md](beads/multi-repo-topology.md) | Beads multi-repo topology: source_repo, hydration, auto-routing, Gas Town, routes.jsonl |
 

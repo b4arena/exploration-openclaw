@@ -6,7 +6,7 @@ How does OpenClaw store, render, and expose session transcripts? What built-in a
 
 ## TL;DR
 
-OpenClaw stores every session as a JSONL file with a tree-structured entry format (`id`/`parentId` DAG). The built-in **Control UI**, **TUI**, and **macOS WebChat** all render live transcripts via the Gateway WebSocket API. A `/export-session` slash command generates self-contained HTML snapshots. After evaluating community projects, **PinchChat** is the recommended viewer for Mimas deployment: it renders tool calls, thinking blocks, and supports split-view — all via Docker with zero backend. **OpenClaw Deck** (7-column layout) looks appealing but lacks tool call and thinking block rendering, making it unsuitable for b4forge agents. A purely passive, read-only multi-agent transcript feed (scrolling blog/timeline) remains a gap that could be filled with a JSONL file watcher approach.
+OpenClaw stores every session as a JSONL file with a tree-structured entry format (`id`/`parentId` DAG). The built-in **Control UI**, **TUI**, and **macOS WebChat** all render live transcripts via the Gateway WebSocket API. A `/export-session` slash command generates self-contained HTML snapshots. After evaluating community projects, **PinchChat** is the recommended viewer for Mimas deployment: it renders tool calls, thinking blocks, and supports split-view — all via Docker with zero backend. **OpenClaw Deck** (7-column layout) looks appealing but lacks tool call and thinking block rendering, making it unsuitable for b4arena agents. A purely passive, read-only multi-agent transcript feed (scrolling blog/timeline) remains a gap that could be filled with a JSONL file watcher approach.
 
 ---
 
@@ -260,7 +260,7 @@ services:
 | Maturity | 374 commits, actively maintained | Very young (Feb 2026) |
 | Stars | 24 | 211 |
 
-**Verdict: PinchChat is the stronger choice.** Tool call and thinking block rendering are essential for b4forge agents — that is 90% of the conversation content. OpenClaw Deck's 7-column layout is visually appealing but without tool/thinking rendering, the transcripts would be mostly empty or unreadable.
+**Verdict: PinchChat is the stronger choice.** Tool call and thinking block rendering are essential for b4arena agents — that is 90% of the conversation content. OpenClaw Deck's 7-column layout is visually appealing but without tool/thinking rendering, the transcripts would be mostly empty or unreadable.
 
 #### Gateway Connection Architecture
 
@@ -426,13 +426,13 @@ onDiagnosticEvent((evt) => {
 | **C) HTML Export** | Low | No (polling) | Yes | Yes |
 | **D) Plugin** | High | Yes (real-time) | Yes (runs inside) | Yes |
 
-For the b4forge use case (agents on Mimas), **Approach B** is most practical — the JSONL files are on disk, no Gateway dependency, and a simple SSE-based web server can push updates to a browser.
+For the b4arena use case (agents on Mimas), **Approach B** is most practical — the JSONL files are on disk, no Gateway dependency, and a simple SSE-based web server can push updates to a browser.
 
 ---
 
 ## 7. Recommended Next Steps
 
-1. **Deploy PinchChat on Mimas** — Docker-ready, best feature set for b4forge agents (tool calls, thinking blocks). Add an Ansible task to `infra/` for the container + an Nginx reverse proxy for same-origin WebSocket access.
+1. **Deploy PinchChat on Mimas** — Docker-ready, best feature set for b4arena agents (tool calls, thinking blocks). Add an Ansible task to `infra/` for the container + an Nginx reverse proxy for same-origin WebSocket access.
 2. **If passive/read-only viewing is needed later** — prototype Approach B (JSONL file watcher + SSE) as a lightweight complement. PinchChat covers 80% of the use case but is interactive, not a passive observer.
 3. **Consider Langfuse** as a complementary solution for long-term audit trails — it captures conversation content via OTel spans (if configured with the Collector attribute mapping from `exploration/deployment/langfuse-audit-trail.md`), providing a searchable, persistent archive alongside the live viewer.
 

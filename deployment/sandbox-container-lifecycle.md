@@ -414,7 +414,7 @@ This means evolution data in the sandbox copy can be **silently lost** on contai
 | Agent reads config but only writes code | `"ro"` | `"session"` | Can read SOUL.md etc. but cannot modify anything |
 | Agent works on a shared codebase | `"rw"` | `"shared"` | All agents see each other's file changes |
 
-**For b4forge agents that should evolve:** Use `workspaceAccess: "rw"`. This gives the agent direct read-write access to its host workspace directory. The container still provides **execution isolation** (all shell commands run inside the container with `--cap-drop ALL`, `--network none`, etc.) — the agent just happens to be working on the real files instead of a copy.
+**For b4arena agents that should evolve:** Use `workspaceAccess: "rw"`. This gives the agent direct read-write access to its host workspace directory. The container still provides **execution isolation** (all shell commands run inside the container with `--cap-drop ALL`, `--network none`, etc.) — the agent just happens to be working on the real files instead of a copy.
 
 Source: `src/agents/sandbox/types.ts:29`, `src/agents/sandbox/config.ts:168`
 

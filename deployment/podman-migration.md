@@ -91,7 +91,7 @@ For sandbox containers needing network (`network: "bridge"` for `setupCommand` o
 - Map sandbox config `network: "openclaw-sandbox-net"` instead of `"bridge"`
 - Or use `--network=slirp4netns:allow_host_loopback=true` for host-only access
 
-## Existing Podman Infrastructure in b4forge
+## Existing Podman Infrastructure in b4arena
 
 | File | Purpose | Status |
 |------|---------|--------|

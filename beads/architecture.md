@@ -2,7 +2,7 @@
 
 ## Status
 
-> **Migrated to implementation:** The architecture decisions from this research have been consolidated into [`b4forge/docs/architecture.md`](../b4forge/docs/architecture.md). This document remains as the detailed research record. The authoritative architecture reference is now in b4forge.
+> **Migrated to implementation:** The architecture decisions from this research have been consolidated into [`b4arena/docs/architecture.md`](../b4arena/docs/architecture.md). This document remains as the detailed research record. The authoritative architecture reference is now in b4arena.
 
 ## Question
 
