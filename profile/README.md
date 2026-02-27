@@ -39,4 +39,4 @@ The architecture follows the Roman Colosseum model: two inseparable buildings co
 
 Our research into agent architectures, coordination patterns, and deployment strategies is public:
 
-- [exploration-openclaw](https://github.com/b4forge/exploration-openclaw) — architecture deep-dives, agent communication patterns, and deployment research
+- [exploration-openclaw](https://github.com/b4arena/exploration-openclaw) — architecture deep-dives, agent communication patterns, and deployment research
