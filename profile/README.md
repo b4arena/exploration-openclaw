@@ -1,6 +1,6 @@
 # b4arena
 
-Multi-agent agentic company — AI agents that plan, build, test, and ship an eSports data platform, steered by a human who spends max 1 hour/day on decisions.
+Multi-agent agentic company — AI agents that plan, build, test, and ship an eSports data platform, steered by humans who each spend max 1 hour/day on decisions.
 
 ## The Structure
 
@@ -14,26 +14,25 @@ The architecture follows the Roman Colosseum model: two inseparable buildings co
 
 ## The Agents
 
-13 agents across 5 wings, all reporting through Apex (Chief of Staff) to the human Editor:
+Each human runs an independent node with their own Apex (Chief of Staff) and agent fleet. Nodes coordinate through GitHub.
 
 ```
-              [ Editor: Human, 1h/day ]
-                          │
-                 [ Apex — Leadership Wing ]
-                (Chief of Staff, runs the Ludus)
-                          │
-      ┌───────────┬────────┼────────┬──────────┐
-      │           │        │        │          │
-   Product   Engineering  Quality  Domain   Leadership
-   ──────    ──────────   ───────  ──────
-   Priya     Atlas        Probe    Senna
-   Maren     Rio                   Quill
-             Vite
-             Forge
-             Muse
-             Hertz
-             Helm
+  Human A                            Human B
+      │                                 │
+      ▼                                 ▼
+  [ Apex — CoS ]                   [ Apex — CoS ]
+      │                                 │
+      ├── Product Wing                  ├── Product Wing
+      ├── Engineering Wing              ├── Engineering Wing
+      ├── Quality Wing                  ├── Quality Wing
+      └── Domain Wing                   └── Domain Wing
+      │                                 │
+      └────────── GitHub ──────────────┘
+               Issues + PRs
+            (shared work repos)
 ```
+
+13 agents across 5 wings per node: Priya (PM), Maren (UX), Atlas (Architect), Rio (EM), Vite, Forge, Muse, Hertz, Helm (Engineering), Probe (QA), Senna, Quill (Domain).
 
 ## Exploration
 
