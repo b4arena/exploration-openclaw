@@ -47,6 +47,7 @@ openclaw/                        ← you are here
 | [agent-to-agent.md](agents/agent-to-agent.md) | Agent-to-agent communication: subagent spawn vs sessions_send vs channel-based (Matrix) |
 | [software-dev-use-cases.md](agents/software-dev-use-cases.md) | Software development use cases: GitHub integration, CI/CD, code review, coding agents |
 | [coding-agents.md](agents/coding-agents.md) | External coding agent integration: Claude Code, Codex, OpenCode, Aider, PTY/exec architecture |
+| [acp-deep-dive.md](agents/acp-deep-dive.md) | ACP/acpx internals: spawn model, NDJSON protocol, session handles, MCP injection; ca-leash vs ACP comparison |
 | [external-communication.md](agents/external-communication.md) | External agent communication: CLI, webhooks, MCP bridge projects, npm package, community skills |
 | [beyond-file-skills.md](agents/beyond-file-skills.md) | Beyond file-based skills: OpenProse, Lobster, LLM Task, Command Dispatch |
 
